@@ -1,0 +1,177 @@
+/* Event List Component - Enhanced 3D Styling */
+:host {
+    --transition-speed: 0.4s;
+    --primary-color: #2196f3;
+    --secondary-color: #03a9f4;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    --hover-transform: translateY(-8px);
+    --glow-color: rgba(33, 150, 243, 0.3);
+    --card-bg-color: rgba(255, 192, 203, 0.15); /* Faint pink background for cards */
+}
+
+/* Comprehensive border removal - target all possible elements */
+:host {
+    --slds-c-card-color-border: transparent !important;
+    --slds-c-card-shadow: none !important;
+}
+
+/* Target Lightning card and all its variants */
+:host lightning-card,
+:host .slds-card,
+:host .slds-card_boundary,
+:host .slds-card__header,
+:host .slds-card__body,
+:host .slds-card__footer {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Target the outer wrapper that might have the border */
+
+
+/* Remove any possible outlines as well */
+:host * {
+    outline: none !important;
+}
+
+/* Main background styling */
+.event-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    margin: 0 auto;
+    max-width: 1200px;
+    
+}
+.event-container[c-eventListComponent_eventListComponent] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #f6ecec;
+}
+/* Section headers */
+.section-header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #6c0d0d;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    position: relative;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    transform: perspective(1000px) rotateX(2deg);
+    box-shadow: var(--card-shadow);
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+/* Card styling - updated with faint pink background */
+.event-card {
+    transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 12px;
+    overflow: hidden;
+    transform: perspective(1000px);
+    box-shadow: var(--card-shadow);
+    background-color: rgb(239, 190, 174); /* Faint pink background */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 192, 203, 0.3); /* Slightly pinker border */
+}
+
+.event-card:hover {
+    transform: var(--hover-transform);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: rgb(239, 190, 174);
+}
+
+/* Animation for cards appearing */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+/* Apply different animation delays based on position */
+.event-item:nth-child(1) { animation-delay: 0.1s; }
+.event-item:nth-child(2) { animation-delay: 0.2s; }
+.event-item:nth-child(3) { animation-delay: 0.3s; }
+.event-item:nth-child(4) { animation-delay: 0.4s; }
+.event-item:nth-child(5) { animation-delay: 0.5s; }
+.event-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #197f75;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    margin: 1rem;
+}
+
+/* Loading spinner customization */
+.custom-spinner {
+    --spinner-color: var(--primary-color);
+    position: relative;
+    height: 80px;
+}
+
+/* Divider styling */
+.section-divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    border: none;
+    margin: 2rem 0;
+    opacity: 0.7;
+}
+
+
+/* 3D floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px) perspective(1000px);
+    }
+    50% {
+        transform: translateY(-10px) perspective(1000px) rotateX(1deg);
+    }
+    100% {
+        transform: translateY(0px) perspective(1000px);
+    }
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-header {
+        transform: none;
+        font-size: 1.5rem;
+    }
+    
+    .event-card:hover {
+        transform: translateY(-5px);
+    }
+}

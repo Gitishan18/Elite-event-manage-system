@@ -1,0 +1,115 @@
+<template>
+    <div class="calendar-container">
+        <!-- Calendar tabs at the top -->
+        
+        
+        <!-- Month header -->
+        <div class="month-header">
+            {currentMonthName} {currentYear}
+        </div>
+        
+        <!-- Month Navigation -->
+        <div class="month-navigation">
+            <button class="today-button" onclick={handleCurrentMonth}>
+                Today
+            </button>
+            <div>
+                <button class="nav-button" onclick={handlePreviousMonth}>
+                    <lightning-icon icon-name="utility:chevronleft" size="small" variant="inverse"></lightning-icon>
+                </button>
+                <button class="nav-button" onclick={handleNextMonth}>
+                    <lightning-icon icon-name="utility:chevronright" size="small" variant="inverse"></lightning-icon>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Calendar View -->
+        <div>
+            <div class="calendar-header">
+                <span>MON</span>
+                <span>TUE</span>
+                <span>WED</span>
+                <span>THU</span>
+                <span>FRI</span>
+                <span>SAT</span>
+                <span>SUN</span>
+            </div>
+            <div class="calendar-grid">
+                <template for:each={calendarDays} for:item="day">
+                    <div key={day.date}
+                         class="calendar-day 
+                               {day.isToday ? 'today' : ''} 
+                               {day.isSelected ? 'selected' : ''} 
+                               {day.hasEvent ? 'has-event' : ''}
+                               {day.isWeekend ? 'weekend' : ''}"
+                         onclick={handleDayClick}
+                         data-date={day.date}>
+                        <div class="day-number">{day.dayNumber}</div>
+                        <template if:true={day.hasEvent}>
+                            <div class="event-names">
+                                <template for:each={day.eventNames} for:item="ename">
+                                    <div key={ename} title={ename}>{ename}</div>
+                                </template>
+                                <template if:true={day.hasMoreEvents}>
+                                    <div class="more-events">+{day.moreEventsCount}</div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+        
+        <!-- Selected Date Events -->
+        <div class="slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <template if:true={selectedDateEvents.length}>
+                <div class="event-list-title">
+                    Events on {formattedSelectedDate}
+                </div>
+                <template for:each={selectedDateEvents} for:item="event">
+                    <div key={event.Id} class="event-card">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_3-of-4">
+                                <p class="event-title">{event.Name__c}</p>
+                                <p class="event-time">
+                                    <lightning-icon icon-name="utility:clock" size="x-small"></lightning-icon>
+                                    <lightning-formatted-date-time 
+                                        value={event.Start_DateTime__c}
+                                        hour="2-digit"
+                                        minute="2-digit"
+                                        hour12="true">
+                                    </lightning-formatted-date-time>
+                                    <template if:true={event.End_Date_Time__c}>
+                                        &nbsp;to&nbsp;
+                                        <lightning-formatted-date-time 
+                                            value={event.End_Date_Time__c}
+                                            hour="2-digit"
+                                            minute="2-digit"
+                                            hour12="true">
+                                        </lightning-formatted-date-time>
+                                    </template>
+                                </p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4 slds-text-align_right">
+                                <button 
+                                    class="view-details"
+                                    onclick={handleEventClick}
+                                    data-event-id={event.Id}>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+            <template if:false={selectedDateEvents.length}>
+                <div class="no-events">
+                    <div class="event-list-title">
+                        {formattedSelectedDate}
+                    </div>
+                    <p>No events scheduled for this date</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

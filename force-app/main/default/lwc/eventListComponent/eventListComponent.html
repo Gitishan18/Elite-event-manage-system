@@ -1,0 +1,103 @@
+<!--
+    @description       : Enhanced Events List Component with 3D Animations
+    @author            : Amit Singh (Original), Enhanced by Claude
+    @group             : 
+    @last modified on  : 05-04-2025
+    @last modified by  : Claude
+-->
+<template>
+ 
+        <!-- Removed variant attribute which could be causing borders -->
+
+            <div class="event-container">
+                <!-- Loading Spinner -->
+                <template if:true={isSpinner}>
+                    <div class="custom-spinner slds-align_absolute-center">
+                        <lightning-spinner alternative-text="Loading events" size="large"></lightning-spinner>
+                    </div>
+                </template>
+                
+                <!-- Upcoming Events Section -->
+                <div class="floating-section">
+                    <h2 class="section-header slds-text-heading_large">
+                        <lightning-icon icon-name="standard:event" size="small" class="slds-m-right_small"></lightning-icon>
+                        Upcoming Events
+                    </h2>
+                    
+                    <lightning-layout multiple-rows>
+                        <template if:true={upcomingEvnets} for:each={upcomingEvnets} for:item="event" for:index="index">
+                            <lightning-layout-item key={event.Id} size="12" padding="around-small" 
+                                small-device-size="12" medium-device-size="6" large-device-size="4" class="event-item">
+                                <div class="event-card">
+                                    <c-event-tile event={event} image-url={images.event} onselect={handleEventClick}></c-event-tile>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                        
+                        <!-- No Upcoming Events Message -->
+                        <template if:true={noUpcomingEvents}>
+                            <lightning-layout-item size="12" padding="around-medium">
+                                <div class="empty-state">
+                                    <lightning-icon icon-name="utility:info" size="medium" class="slds-m-bottom_medium"></lightning-icon>
+                                    <p class="slds-text-heading_small">No upcoming events available at the moment</p>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </div>
+                
+                <hr class="section-divider" />
+                
+                <!-- Past Events Section -->
+                <div class="floating-section" style="animation-delay: 1s;">
+                    <h2 class="section-header slds-text-heading_large">
+                        <lightning-icon icon-name="standard:historical_adherence" size="small" class="slds-m-right_small"></lightning-icon>
+                        Past Events
+                    </h2>
+                    
+                    <lightning-layout multiple-rows>
+                        <template if:true={pastEvents} for:each={pastEvents} for:item="event" for:index="index">
+                            <lightning-layout-item key={event.Id} size="12" padding="around-small" 
+                                small-device-size="12" medium-device-size="6" large-device-size="4" class="event-item">
+                                <div class="event-card">
+                                    <c-event-tile event={event} image-url={images.event} onselect={handleEventClick}></c-event-tile>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                        
+                        <!-- No Past Events Message -->
+                        <template if:true={noPastEvents}>
+                            <lightning-layout-item size="12" padding="around-medium">
+                                <div class="empty-state">
+                                    <lightning-icon icon-name="utility:info" size="medium" class="slds-m-bottom_medium"></lightning-icon>
+                                    <p class="slds-text-heading_small">No past events to display</p>
+                                </div>
+                            </lightning-layout-item>
+                        </template>
+                    </lightning-layout>
+                </div>
+                
+                <!-- Error Messages -->
+                <template if:true={upcomingError}>
+                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                        <span class="slds-assistive-text">Error</span>
+                        <span class="slds-icon_container slds-icon-utility-error slds-m-right_small">
+                            <lightning-icon icon-name="utility:error" size="small"></lightning-icon>
+                        </span>
+                        <h2>{upcomingError}</h2>
+                    </div>
+                </template>
+                
+                <template if:true={pastError}>
+                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                        <span class="slds-assistive-text">Error</span>
+                        <span class="slds-icon_container slds-icon-utility-error slds-m-right_small">
+                            <lightning-icon icon-name="utility:error" size="small"></lightning-icon>
+                        </span>
+                        <h2>{pastError}</h2>
+                    </div>
+                </template>
+            </div>
+        
+   
+</template>

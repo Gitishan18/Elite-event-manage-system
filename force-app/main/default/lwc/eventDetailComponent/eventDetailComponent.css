@@ -1,0 +1,119 @@
+.eventTitle {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #f8fafc 0%, #e0e7ff 100%);
+    border-radius: 16px;
+    font-family: 'Montserrat', cursive, sans-serif;
+    box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+    padding: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+    text-align: center;
+}
+.pp{
+    color: #c8ab52;
+}
+.rsvp {
+    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+    font-size: 1rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    font-family: 'Montserrat', cursive, sans-serif;
+    box-shadow: 0 1px 6px rgba(120,120,180,0.10);
+    padding: 1.2rem 1.5rem;
+    color: #3a3a3a;
+}
+
+.eventDetails {
+    background: linear-gradient(90deg, #e0f7fa 0%, #b2ebf2 100%);
+    margin-top: 1rem;
+    border-radius: 14px;
+    text-align: justify;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(60,60,120,0.07);
+    padding: 1.2rem 1.5rem;
+    color: #263238;
+}
+
+.location {
+    background: linear-gradient(90deg, #fffde4 0%, #f9f9f9 100%);
+    color: #222 !important;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(120,120,120,0.08);
+    padding: 0.8rem 1.2rem;
+}
+
+.contactUs {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.speaker {
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #f0f4ff 0%, #e3f0ff 100%);
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(60,60,120,0.08);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.org {
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #f0f4ff 0%, #e3f0ff 100%);
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(60,60,120,0.08);
+    padding: 1.2rem 1.5rem;
+}
+
+.titlePhoto {
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(60,60,120,0.10);
+    object-fit: cover;
+    border: 3px solid #e0e7ff;
+}
+
+.titleCalse {
+    font-size: 2.5rem;
+    color: #3b82f6;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .eventTitle, .rsvp, .eventDetails, .location, .speaker, .org {
+        padding: 0.8rem 0.5rem;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .titleCalse {
+        font-size: 1.5rem;
+    }
+    .titlePhoto {
+        width: 80px;
+        height: 80px;
+    }
+}

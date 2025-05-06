@@ -1,0 +1,6 @@
+body {
+    background-image: url('/force-app/main/default/staticresources/event.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

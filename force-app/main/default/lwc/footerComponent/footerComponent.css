@@ -1,0 +1,21 @@
+body {
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.footerContent{
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Lato';
+    background: #e8e8e8 !important;
+    color: black;
+}
+
+.titleCase{
+    font-size: 25px !important;
+    color: blue !important;
+    text-align: center !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
